@@ -24,32 +24,29 @@ function writeResponse(jokes) {
     createJokeTextFile(files, jokes);
     appendJokesToTextFile(jokes);
   });
+}
 
-  function createJokeTextFile(files, jokes) {
-    if (!files.includes(`joke.txt`)) {
-      if (jokes.length === 0) {
-        write(`joke.txt`, `Aca no hacemos chistes con esas cosas.`, error => {
-          if (error) throw error;
-        });
-      } else {
-        write(`joke.txt`, jokes[0], error => {
-          if (error) throw error;
-        });
-      }
+function createJokeTextFile(files, jokes) {
+  if (!files.includes(`joke.txt`)) {
+    if (jokes.length === 0) {
+      write(`joke.txt`, `Aca no hacemos chistes con esas cosas.`, error => {
+        if (error) throw error;
+      });
+    } else {
+      write(`joke.txt`, `${jokes[0].joke} \n\n`, error => {
+        if (error) throw error;
+      });
     }
   }
+}
 
-  function appendJokesToTextFile(jokes) {
-    let auxJokes = jokes.slice(1);
-    auxJokes.forEach(joke => {
-      append("joke.txt", joke, error => {
-        console.log(error);
-      });
-      append("joke.txt", "\n", error => {
-        console.log(error);
-      });
+function appendJokesToTextFile(jokes) {
+  let auxJokes = jokes.slice(1);
+  auxJokes.forEach(joke => {
+    append("joke.txt", `${joke.joke} \n\n`, error => {
+      console.log(error);
     });
-  }
+  });
 }
 
 module.exports.handleResponse = handleResponse;

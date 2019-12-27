@@ -1,6 +1,6 @@
 const prompt = require("prompt");
-const apiCall = require("./api.js");
 const chalk = require("chalk");
+const apiCall = require("./api.js");
 
 function askUserForKeyword() {
   let answer = "";
