@@ -10,11 +10,9 @@ function handleResponse(jokes) {
       console.log(chalk.red('"Aca no hacemos chistes con esas cosas"'));
     });
   } else {
-    jokes.forEach(joke => {
-      append("joke.txt", `${joke.joke} \n\n`, error => {
-        if (error) console.log(error);
-        console.log(chalk.green(`"${joke.joke}"`));
-      });
+    console.log(jokes[0].joke);
+    append("joke.txt", `${jokes[0].joke} \n\n`, error => {
+      if (error) console.log(error);
     });
   }
 }

@@ -1,13 +1,12 @@
 const request = require("request");
-const handleResponse = require("./output.js");
 
-function callJokeAPI(keyword) {
+function callJokeAPI(keyword, cb) {
   request(
     `https://icanhazdadjoke.com/search?term=${keyword}`,
     { json: true },
     function(error, response, body) {
       if (error) console.log("Error:", error.message);
-      handleResponse.handleResponse(body.results);
+      cb(body.results);
     }
   );
 }
