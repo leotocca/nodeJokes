@@ -1,6 +1,6 @@
 const request = require("request");
 
-function callJokeAPI(keyword, cb) {
+function callJokeAPI(keyword, cb, cb2) {
   request(
     `https://icanhazdadjoke.com/search?term=${keyword}`,
     { json: true },
