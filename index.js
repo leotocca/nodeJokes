@@ -12,6 +12,6 @@ userInput.askUserForKeyword(function(answer) {
     mapOfJokes.logMapOfJokes();
   } else {
     apiCall.callJokeAPI(answer, handleResponse.handleResponse);
-    mapOfJokes.addJoke(answer);
+    // mapOfJokes.addJoke(answer);
   }
 });

@@ -5,10 +5,7 @@ const { appendFile: append } = fs;
 
 function handleResponse(jokes) {
   if (jokes.length === 0) {
-    append("joke.txt", `Aca no hacemos chistes con esas cosas`, error => {
-      if (error) console.log(error);
-      console.log(chalk.red('"Aca no hacemos chistes con esas cosas"'));
-    });
+    console.log(chalk.red("Aca no hacemos chistes con esas cosas"));
   } else {
     console.log(jokes[0].joke);
     append("joke.txt", `${jokes[0].joke} \n\n`, error => {
