@@ -2,7 +2,7 @@
 
 A simple CLI app done with node.js
 
-- Download the files and run "node index.js".
+- Download the files and run "node index.js" in the CLI.
 
 - You'll get asked for a keyword to request the icanhazdadjokes.com API. Then, a random joke that got received from the API will be logged in the CLI.
 
