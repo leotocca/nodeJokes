@@ -3,12 +3,12 @@ const fs = require("fs");
 
 const { appendFile: append } = fs;
 
-function handleResponse(jokes) {
-  if (jokes.length === 0) {
+function handleResponse(joke) {
+  if (joke.length === 0) {
     console.log(chalk.red("Aca no hacemos chistes con esas cosas"));
   } else {
-    console.log(jokes[0].joke);
-    append("joke.txt", `${jokes[0].joke} \n\n`, error => {
+    console.log(joke);
+    append("joke.txt", `${joke} \n\n`, error => {
       if (error) console.log(error);
     });
   }
