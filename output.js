@@ -4,18 +4,23 @@ const fs = require("fs");
 const { appendFile: append } = fs;
 
 function handleResponse(jokes) {
-  if (jokes.length === 0) {
-    append("joke.txt", `Aca no hacemos chistes con esas cosas`, error => {
-      if (error) console.log(error);
-      console.log(chalk.red('"Aca no hacemos chistes con esas cosas"'));
-    });
+  let result = getRandomJoke(jokes);
+
+  if (result === undefined) {
+    console.log(chalk.red("Aca no hacemos chistes con esas cosas"));
   } else {
-    jokes.forEach(joke => {
-      append("joke.txt", `${joke.joke} \n\n`, error => {
-        if (error) console.log(error);
-        console.log(chalk.green(`"${joke.joke}"`));
-      });
+    console.log(chalk.blue.bgYellow.bold(result));
+    append("joke.txt", `${result} \n\n`, error => {
+      if (error) console.log(error);
     });
+  }
+}
+
+function getRandomJoke(jokes) {
+  if (jokes.length === 0) {
+    return undefined;
+  } else {
+    return jokes[Math.floor(Math.random() * jokes.length)].joke;
   }
 }
 
