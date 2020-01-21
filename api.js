@@ -6,7 +6,8 @@ function callJokeAPI(keyword, cb) {
     { json: true },
     function(error, response, body) {
       if (error) console.log("Error:", error.message);
-      cb(body.results[0].joke);
+
+      cb(body.results);
     }
   );
 }

@@ -1,34 +1,36 @@
-let chalk = require("chalk");
+const chalk = require("chalk");
+const fs = require("fs");
 
-class Leaderboard {
-  constructor() {
-    this.mapOfJokes = new Map();
-    this.arr = [];
-  }
-
-  addJoke(joke) {
-    if (this.mapOfJokes.has(joke)) {
-      this.mapOfJokes.set(joke, this.mapOfJokes.get(joke) + 1);
-    } else {
-      this.mapOfJokes.set(joke, 1);
+function getLeader() {
+  const mapOfJokes = new Map();
+  fs.readFile("joke.txt", "utf-8", (err, data) => {
+    if (err) {
+      console.log(chalk.red("Please, ask for a keyword first"));
+      throw err;
     }
-  }
 
-  getLeaderboardJoke() {
-    let keys = Array.from(this.mapOfJokes.keys());
-    let values = Array.from(this.mapOfJokes.values());
+    let splittedData = data.split(`\n`);
+
+    splittedData.forEach(joke => {
+      if (joke !== "") {
+        if (mapOfJokes.has(joke)) {
+          mapOfJokes.set(joke, mapOfJokes.get(joke) + 1);
+        } else {
+          mapOfJokes.set(joke, 1);
+        }
+      }
+    });
+
+    const keys = Array.from(mapOfJokes.keys());
+    const values = Array.from(mapOfJokes.values());
+
     if (keys.length === 0) {
       console.log("No hay bromas");
     } else {
-      let leaderboard = keys[values.indexOf(Math.max(...values))];
+      const leaderboard = keys[values.indexOf(Math.max(...values))];
       console.log(`${leaderboard} \n`, chalk.blue(`#ElMasPopular`));
-      console.log(this.mapOfJokes);
     }
-  }
-
-  logMapOfJokes() {
-    console.log(this.mapOfJokes);
-  }
+  });
 }
 
-module.exports = Leaderboard;
+module.exports = getLeader;
