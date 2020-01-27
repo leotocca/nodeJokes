@@ -2,6 +2,12 @@ const prompt = require("prompt");
 const chalk = require("chalk");
 
 function askUserForKeyword(cb) {
+  // debugger;
+  // if (error) {
+  //   console.log("Error:", error.message);
+  //   throw Error;
+  // }
+
   let answer = "";
 
   prompt.start();
