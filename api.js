@@ -5,7 +5,10 @@ function callJokeAPI(keyword, cb) {
     `https://icanhazdadjoke.com/search?term=${keyword}`,
     { json: true },
     function(error, response, body) {
-      if (error) console.log("Error:", error.message);
+      if (error) {
+        console.log("Error:", error.message);
+        throw Error;
+      }
 
       cb(body.results);
     }
