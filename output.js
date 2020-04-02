@@ -9,7 +9,7 @@ function handleResponse(jokes) {
   if (result === undefined) {
     console.log(chalk.red("Aca no hacemos chistes con esas cosas"));
   } else {
-    console.log(chalk.blue.bgYellow.bold(result));
+    console.log(chalk.blue.bold(result));
     append("joke.txt", `${result} \n\n`, error => {
       if (error) console.log(error);
     });
